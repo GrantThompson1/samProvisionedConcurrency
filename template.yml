@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: A sample SAM template for deploying Lambda functions.
+
+Resources:
+  myPythonFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: myPythonFunction.handler
+      Runtime: python3.9
+      AutoPublishAlias: live
+      Policies:
+        - Version: "2012-10-17"
+          Statement: 
+          - Effect: "Allow"
+            Action: 
+              - "lambda:*"
+            Resource: '*'
+      DeploymentPreference:
+          Type: Linear10PercentEvery1Minute
+      ProvisionedConcurrencyConfig:
+        ProvisionedConcurrentExecutions: 10
+  beforeAllowTraffic:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: beforeAllowTraffic.handler
+      Policies:
+        - Version: "2012-10-17"
+          Statement: 
+          - Effect: "Allow"
+            Action: 
+              - "codedeploy:PutLifecycleEventHookExecutionStatus"
+              - "lambda:*"
+            Resource: '*'    
+      Runtime: python3.9
+# Specifies the name of the Lambda hook function      
+      FunctionName: 'CodeDeployHook_beforeAllowTraffic_provisionedConcurrency'
+      DeploymentPreference:
+        Enabled: false
+      Timeout: 900
