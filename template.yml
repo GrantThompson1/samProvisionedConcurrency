@@ -18,8 +18,6 @@ Resources:
             Resource: '*'
       DeploymentPreference:
           Type: Linear10PercentEvery1Minute
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 10
   beforeAllowTraffic:
     Type: AWS::Serverless::Function
     Properties:

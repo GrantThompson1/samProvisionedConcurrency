@@ -17,9 +17,7 @@ Resources:
           Resource: '*'
       DeploymentPreference:
         Type: Linear10PercentEvery1Minute
-      ProvisionedConcurrencyConfig:
-        ProvisionedConcurrentExecutions: 10
-      CodeUri: s3://sam-sourcecode-gmthomp/19caa24fd41a8edb527c11c0535f9d10
+      CodeUri: s3://sam-sourcecode-gmthomp/b52af118bf3430a487d3383834cb027a
     Metadata:
       SamResourceId: myPythonFunction
   beforeAllowTraffic:
@@ -39,6 +37,6 @@ Resources:
       DeploymentPreference:
         Enabled: false
       Timeout: 900
-      CodeUri: s3://sam-sourcecode-gmthomp/19caa24fd41a8edb527c11c0535f9d10
+      CodeUri: s3://sam-sourcecode-gmthomp/b52af118bf3430a487d3383834cb027a
     Metadata:
       SamResourceId: beforeAllowTraffic
